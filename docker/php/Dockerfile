@@ -3,10 +3,14 @@ FROM php:7.4.2-fpm
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
 RUN apt-get update
-RUN apt-get install -y git libzip-dev vim
+RUN apt-get install -y git libzip-dev vim zlib1g-dev libpng-dev libcurl4-openssl-dev cron supervisor certbot
+RUN docker-php-ext-install session
+RUN docker-php-ext-install curl
+RUN docker-php-ext-install gd
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
+
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
