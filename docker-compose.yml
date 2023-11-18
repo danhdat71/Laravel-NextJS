@@ -40,7 +40,7 @@ services:
       - 3000
     volumes:
       - ./src/front:/var/www/front
-    command: bash -c "npm run build && npm run start"
+    command: bash -c "npm install && npm run build && npm run start"
 
   mysql:
     image: mysql:latest
