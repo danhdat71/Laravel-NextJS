@@ -28,6 +28,8 @@ services:
       - ./docker/php/backend_queue.conf:/etc/supervisor/conf.d/backend_queue.conf
       - ./docker/php/backend_cron.conf:/etc/supervisor/conf.d/backend_cron.conf
       - ../projects/backend:/var/www/server
+    environment:
+      - ENV=${ENV}
 
   node:
     container_name: next_app
@@ -38,12 +40,12 @@ services:
     tty: true
     ports:
       - "33000:3000"
+    environment:
+      - ENV=${ENV}
     expose:
       - 3000
     volumes:
       - ../projects/frontend:/var/www/front
-    command: bash -c "npm install && npm run build && npm run start"
-    # command: bash -c "npm install && npm run dev"
 
   mysql:
     image: mysql:latest

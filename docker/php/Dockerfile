@@ -1,5 +1,7 @@
 FROM php:8.2.13-fpm
 
+ENV ENV=${ENV}
+
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
 RUN apt-get -y update
@@ -14,7 +16,8 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-install opcache
 RUN docker-php-ext-install exif
-
-RUN pecl install xdebug \
-  && docker-php-ext-enable xdebug
 RUN docker-php-ext-enable zip
+
+COPY ./boot.sh /usr/local/sbin/
+RUN chmod 755 /usr/local/sbin/boot.sh
+ENTRYPOINT ["/usr/local/sbin/boot.sh"]
