@@ -20,4 +20,4 @@ RUN docker-php-ext-enable zip
 
 COPY ./boot.sh /usr/local/sbin/
 RUN chmod 755 /usr/local/sbin/boot.sh
-ENTRYPOINT ["/usr/local/sbin/boot.sh"]
+CMD ["sh", "-c", "/usr/local/sbin/boot.sh && php-fpm"]

@@ -21,4 +21,4 @@ if [ "$ENV" == "develop" ]; then
 fi
 
 # Start supervisor
-/usr/bin/supervisord -n
+service supervisor start
