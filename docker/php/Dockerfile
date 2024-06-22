@@ -9,7 +9,7 @@ RUN apt-get -y upgrade
 RUN apt-get install -y git libzip-dev vim zlib1g-dev libpng-dev libfreetype6-dev libjpeg62-turbo-dev libcurl4-openssl-dev cron supervisor \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd
-# RUN apt-get install -y ffmpeg
+RUN apt-get install -y ffmpeg
 RUN docker-php-ext-install curl
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install mysqli
