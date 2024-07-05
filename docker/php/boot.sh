@@ -2,12 +2,15 @@
 
 echo "Enviroment $ENV is starting..."
 
-composer dump-autoload
-
 # Update laravel vendor
 if [ "$ENV" == "production" ]; then
     composer update
+else
+    composer install
 fi
+
+# Set project user
+chown -R www-data:www-data /var/www/server
 
 # Laravel commands
 php artisan migrate
