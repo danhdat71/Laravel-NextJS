@@ -2,6 +2,8 @@
 
 echo "Enviroment $ENV is starting..."
 
+composer dump-autoload
+
 # Update laravel vendor
 if [ "$ENV" == "production" ]; then
     composer update

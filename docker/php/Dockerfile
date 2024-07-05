@@ -21,6 +21,8 @@ RUN docker-php-ext-enable zip
 RUN pecl install xdebug \
   && docker-php-ext-enable xdebug
 
+RUN chown -R www-data:www-data /var/www/server
+
 COPY ./boot.sh /usr/local/sbin/
 RUN chmod 755 /usr/local/sbin/boot.sh
 CMD ["sh", "-c", "/usr/local/sbin/boot.sh && php-fpm"]
